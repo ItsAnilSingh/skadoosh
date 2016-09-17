@@ -205,6 +205,16 @@ doallstuff(){
          ;;
     esac
 
+    ### Check branchname for slashes. ###
+    
+    branchtest=$(echo $branch | tr / -)
+    if [ "$branch" = "$branchtest" ]; then
+      echo ""
+    else
+      unset $branch 2>/dev/null
+      branch=$branchtest
+    fi
+
     # Separate the stuff
     separatestuff
     case $Rss in
